@@ -23,7 +23,7 @@ import static zh.qiushui.simpchemlib.registry.MachineRegistry.ELEMENT_EXTRACTOR;
 import static zh.qiushui.simpchemlib.registry.MachineRegistry.ELEMENT_EXTRACTOR_;
 
 public class ElementExtractor extends Block implements BlockEntityProvider {
-    private static final Text TITLE = Text.translatable("container.extractor_element");
+    private static final Text TITLE = Text.translatable("container.element_extractor");
 
     public ElementExtractor(Settings settings) {
         super(settings);
@@ -54,12 +54,5 @@ public class ElementExtractor extends Block implements BlockEntityProvider {
             player.incrementStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
             return ActionResult.CONSUME;
         }
-    }
-
-    @Override
-    public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-        return new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> {
-            return new TestCraftingScreenHandler(i, playerInventory, ScreenHandlerContext.create(world, pos));
-        }, TITLE);
     }
 }

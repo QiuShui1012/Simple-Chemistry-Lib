@@ -3,7 +3,7 @@
 	"id": "simpchemlib",
 	"version": "${version}",
 	"name": "Simple Chemistry Lib",
-	"description": "A simple Chemistry mod.",
+	"description": "A simple Chemistry mod's lib.",
 	"authors": [
 		"QiuShui1012"
 	],

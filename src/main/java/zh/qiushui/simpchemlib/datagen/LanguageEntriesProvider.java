@@ -41,6 +41,8 @@ public class LanguageEntriesProvider {
 
             translationBuilder.add("item" + MOD_ID + "blue_ice_bucket", "蓝冰桶");
             translationBuilder.add("item" + MOD_ID + "magma_bucket", "岩浆桶");
+
+            translationBuilder.add("container.element_extractor", "元素提取机");
         }
     }
 
@@ -79,6 +81,8 @@ public class LanguageEntriesProvider {
 
             translationBuilder.add("item" + MOD_ID + "blue_ice_bucket", "Blue Ice Bucket");
             translationBuilder.add("item" + MOD_ID + "magma_bucket", "Magma Bucket");
+
+            translationBuilder.add("container.element_extractor", "Element Extractor");
         }
     }
 }
