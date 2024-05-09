@@ -6,6 +6,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -19,7 +20,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import zh.qiushui.simpchemlib.api.interfaces.ImplementedInventory;
+import zh.qiushui.simpchemlib.recipe.ElementExtract;
 import zh.qiushui.simpchemlib.screen.ElementExtractorScreenHandler;
+
+import java.util.Optional;
 
 import static zh.qiushui.simpchemlib.registry.MachineRegistry.ELEMENT_EXTRACTOR_ENTITY;
 
@@ -99,17 +103,17 @@ public class ElementExtractorEntity extends BlockEntity implements ExtendedScree
             return;
         }
         if (isOutputSlotAvailable()){
-//            if (this.hasRecipe()){
+            if (this.hasRecipe()){
                 this.increaseCraftProgress();
                 markDirty(world1,pos,state1);
 
-//                if (hasCraftingFinished()){
-//                    this.craftItem();
-//                    this.resetProgress();
-//                }
-//            }else {
+                if (hasCraftingFinished()){
+                    this.craftItem();
+                    this.resetProgress();
+                }
+            }else {
                 this.resetProgress();
-//            }
+            }
         }else {
             this.resetProgress();
             markDirty(world1, pos, state1);
@@ -120,12 +124,13 @@ public class ElementExtractorEntity extends BlockEntity implements ExtendedScree
         this.progress = 0;
     }
 
-//    private void craftItem() {
-//        this.removeStack(INPUT_SLOT,1);
-//        ItemStack result = new ItemStack(ModItems.ICE_ETHER);
+    private void craftItem() {
+        this.removeStack(INPUT_SLOT,1);
+        Optional<ElementExtract> recipe = getCurrentRecipe();
 
-//        this.setStack(OUTPUT_SLOT,new ItemStack(result.getItem(),getStack(OUTPUT_SLOT).getCount() + result.getCount()));
-//    }
+        this.setStack(OUTPUT_SLOT,new ItemStack(recipe.get().getOutput(null).getItem(),
+                getStack(OUTPUT_SLOT).getCount() + recipe.get().getOutput(null).getCount()));
+    }
 
     private boolean hasCraftingFinished() {
         return progress >= maxProgress;
@@ -135,12 +140,20 @@ public class ElementExtractorEntity extends BlockEntity implements ExtendedScree
         progress++;
     }
 
-//    private boolean hasRecipe() {
-//        ItemStack result = new ItemStack(ModItems.ICE_ETHER);
-//        boolean hasInput = getStack(INPUT_SLOT).getItem() == ModItems.RAW_ICE_ETHER;
+    private boolean hasRecipe() {
+        Optional<ElementExtract> recipe = getCurrentRecipe();
 
-//        return hasInput && canInsertAmountIntoOutputSlot(result) && canInsertItemIntoOutputSlot(result.getItem());
-//    }
+        return recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().getOutput(null)) &&
+        canInsertItemIntoOutputSlot(recipe.get().getOutput(null).getItem());
+    }
+
+    private Optional<ElementExtract> getCurrentRecipe() {
+        SimpleInventory inv = new SimpleInventory(this.size());
+        for (int i = 0; i< this.size(); i++){
+            inv.setStack(i,this.getStack(i));
+        }
+        return getWorld().getRecipeManager().getFirstMatch(ElementExtract.Type.INSTANCE,inv,getWorld());
+    }
 
     private boolean canInsertAmountIntoOutputSlot(ItemStack result) {
         return this.getStack(OUTPUT_SLOT).getCount() + result.getCount() <= getStack(OUTPUT_SLOT).getMaxCount();
