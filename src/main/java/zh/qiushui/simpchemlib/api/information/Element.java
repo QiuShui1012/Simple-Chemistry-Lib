@@ -13,6 +13,9 @@ public class Element {
     public final double mass;
     public final int metalType;
     public final Color typeColor;
+    public final double solidTemp;
+    public final double fluidTemp;
+    public final double gasTemp;
     public final boolean didMassTested;
     public final boolean didMetalTypeTested;
 
@@ -21,10 +24,13 @@ public class Element {
             String symbol,
             int zNumber,
             double mass,
-            int metalType
+            int metalType,
+            double solidTemp,
+            double fluidTemp,
+            double gasTemp
     )
     {
-        this(nameMap, symbol, zNumber, mass, metalType, getColor(metalType), true, true);
+        this(nameMap, symbol, zNumber, mass, metalType, getColor(metalType), solidTemp, fluidTemp, gasTemp, true, true);
     }
     public Element(
             I18nNameMap nameMap,
@@ -32,10 +38,13 @@ public class Element {
             int zNumber,
             double mass,
             boolean didMassTested,
-            int metalType
+            int metalType,
+            double solidTemp,
+            double fluidTemp,
+            double gasTemp
     )
     {
-        this(nameMap, symbol, zNumber, mass, metalType, getColor(metalType), didMassTested, true);
+        this(nameMap, symbol, zNumber, mass, metalType, getColor(metalType), solidTemp, fluidTemp, gasTemp, didMassTested, true);
     }
     public Element(
             I18nNameMap nameMap,
@@ -43,10 +52,13 @@ public class Element {
             int zNumber,
             double mass,
             int metalType,
+            double solidTemp,
+            double fluidTemp,
+            double gasTemp,
             boolean didMetalTypeTested
     )
     {
-        this(nameMap, symbol, zNumber, mass, metalType, getColor(metalType), true, didMetalTypeTested);
+        this(nameMap, symbol, zNumber, mass, metalType, getColor(metalType), solidTemp, fluidTemp, gasTemp, true, didMetalTypeTested);
     }
 
     public Element(
@@ -56,6 +68,9 @@ public class Element {
             double mass,
             int metalType,
             Color typeColor,
+            double solidTemp,
+            double fluidTemp,
+            double gasTemp,
             boolean didMassTested,
             boolean didMetalTypeTested
     )
@@ -66,6 +81,9 @@ public class Element {
         this.mass = mass;
         this.metalType = metalType;
         this.typeColor = typeColor;
+        this.solidTemp = solidTemp;
+        this.fluidTemp = fluidTemp;
+        this.gasTemp = gasTemp;
         this.didMassTested = didMassTested;
         this.didMetalTypeTested = didMetalTypeTested;
     }

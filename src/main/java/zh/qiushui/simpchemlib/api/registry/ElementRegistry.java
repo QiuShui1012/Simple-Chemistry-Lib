@@ -53,7 +53,7 @@ public class ElementRegistry {
     public void simpleRegistry(String modId, Element information, float blockStrength, String gemName, int... except) {
         if (Arrays.stream(except).anyMatch(f -> f == 0)) {
             registerBlock(modId, information, blockStrength);
-            if (Arrays.stream(except).anyMatch(f -> f == 3)) {
+            if (Arrays.stream(except).anyMatch(f -> f == 2)) {
                 registerGem(modId, information, gemName);
             } else {
                 registerMetal(modId, information);
