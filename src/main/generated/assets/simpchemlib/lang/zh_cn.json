@@ -1,4 +1,5 @@
 {
+  "block.simpchemlib.element_extractor": "元素提取机",
   "container.element_extractor": "元素提取机",
   "item.simpchemlib.blue_ice_bucket": "蓝冰桶",
   "item.simpchemlib.magma_bucket": "岩浆桶",
@@ -15,6 +16,10 @@
   "metalType.simpchemlib.poor_metal": "贫金属",
   "metalType.simpchemlib.transition_metal": "过渡金属",
   "qualifier.simpchemlib.inaccurate": "%s（未测定）",
+  "simpchemlib.modmenu.category.elaborate_model": "精细模型",
+  "simpchemlib.modmenu.option.elaborate_base": "启用%s精细模型",
+  "simpchemlib.modmenu.title": "简单化学类库|配置",
+  "simpchemlib.modmenu.tooltip.elaborate_base": "目前%s已有两种模型：精细和简单\n默认为精细模型，若设置为关闭，则启用简单模型",
   "temperature.simpchemlib.blue_ice_bucket": "0℃以下",
   "temperature.simpchemlib.magma_bucket": "1538℃以上",
   "tooltip.simpchemlib.bucket": "支持温度：%s",

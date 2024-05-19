@@ -178,8 +178,8 @@ public interface ImplementedInventory extends SidedInventory {
     /**
      * Replaces the current stack in the {@code slot} with the provided stack.
      *
-     * <p>If the stack is too big for this inventory ({@link Inventory#getMaxCountPerStack()}),
-     * it gets resized to this inventory's maximum amount.
+     * <p>If the stack is too big for this item's max count ({@link ItemStack#getMaxCount()}),
+     * it gets resized to this item's max count.
      *
      * @param slot the slot
      * @param stack the stack
@@ -187,8 +187,8 @@ public interface ImplementedInventory extends SidedInventory {
     @Override
     default void setStack(int slot, ItemStack stack) {
         getItems().set(slot, stack);
-        if (stack.getCount() > getMaxCountPerStack()) {
-            stack.setCount(getMaxCountPerStack());
+        if (stack.getCount() > stack.getMaxCount()) {
+            stack.setCount(stack.getMaxCount());
         }
         markDirty();
     }

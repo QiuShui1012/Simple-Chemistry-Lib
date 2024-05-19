@@ -4,7 +4,7 @@ import zh.qiushui.simpchemlib.api.information.language.I18nNameMap;
 
 import java.awt.Color;
 
-import static zh.qiushui.simpchemlib.api.map.TypeColorMap.getColor;
+import static zh.qiushui.simpchemlib.api.definition.map.TypeColorMap.getColor;
 
 public class Element {
     public final I18nNameMap nameMap;

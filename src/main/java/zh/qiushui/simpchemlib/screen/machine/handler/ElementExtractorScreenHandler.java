@@ -1,4 +1,4 @@
-package zh.qiushui.simpchemlib.screen;
+package zh.qiushui.simpchemlib.screen.machine.handler;
 
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,6 +11,7 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import zh.qiushui.simpchemlib.machine.entity.ElementExtractorEntity;
+import zh.qiushui.simpchemlib.registry.MachineRegistry;
 
 public class ElementExtractorScreenHandler extends ScreenHandler {
     private final Inventory inventory;
@@ -18,19 +19,19 @@ public class ElementExtractorScreenHandler extends ScreenHandler {
     public final ElementExtractorEntity blockEntity;
     public ElementExtractorScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
         this(syncId,inventory,inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-                new ArrayPropertyDelegate(2));
+                new ArrayPropertyDelegate(17));
     }
 
     public ElementExtractorScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
-        super(SimpChemScreenHandlers.ELEMENT_EXTRACTOR_SCREEN_HANDLER,syncId);
-        checkSize((Inventory) blockEntity,2);
+        super(MachineRegistry.ELEMENT_EXTRACTOR_SCREEN_HANDLER,syncId);
+        checkSize((Inventory) blockEntity,17);
         this.inventory = (Inventory) blockEntity;
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = arrayPropertyDelegate;
         this.blockEntity = (ElementExtractorEntity) blockEntity;
 
         this.addSlot(new Slot(inventory,0,80,11));
-        this.addSlot(new Slot(inventory,1,80,59));
+        addOutputInventory();
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
@@ -39,17 +40,25 @@ public class ElementExtractorScreenHandler extends ScreenHandler {
 
     }
 
+    private void addOutputInventory() {
+        for (int i = 0; i < 2; ++i) {
+            for (int l = 0; l < 8; ++l) {
+                this.addSlot(new Slot(inventory, l + i * 8 + 1, 17 + l * 18, 59 + i * 18));
+            }
+        }
+    }
+
     private void addPlayerInventory(PlayerInventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 102 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(PlayerInventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 160));
         }
     }
 

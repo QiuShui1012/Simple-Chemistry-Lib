@@ -1,4 +1,4 @@
-package zh.qiushui.simpchemlib.api.map;
+package zh.qiushui.simpchemlib.api.definition.map;
 
 import zh.qiushui.simpchemlib.api.exception.UnsupportedObjectException;
 

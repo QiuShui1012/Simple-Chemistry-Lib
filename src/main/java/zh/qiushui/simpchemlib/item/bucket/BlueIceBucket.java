@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static zh.qiushui.simpchemlib.api.definition.Text.text;
+import static zh.qiushui.simpchemlib.api.definition.Texts.simpChemText;
 import static zh.qiushui.simpchemlib.api.tooltip.Tooltip.tooltip;
 
 public class BlueIceBucket extends BucketItem {
@@ -26,6 +26,6 @@ public class BlueIceBucket extends BucketItem {
     @Override
     @Environment(value= EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(tooltip("ice_bucket", text("temperature", "blue_ice_bucket").formatted(Formatting.AQUA)).formatted(Formatting.RESET, Formatting.GRAY));
+        tooltip.add(tooltip("blue_ice_bucket", simpChemText("temperature", "blue_ice_bucket").formatted(Formatting.AQUA)).formatted(Formatting.RESET, Formatting.GRAY));
     }
 }

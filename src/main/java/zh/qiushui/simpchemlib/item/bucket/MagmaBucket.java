@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static zh.qiushui.simpchemlib.api.definition.Text.text;
+import static zh.qiushui.simpchemlib.api.definition.Texts.simpChemText;
 import static zh.qiushui.simpchemlib.api.tooltip.Tooltip.tooltip;
 
 public class MagmaBucket extends BucketItem {
@@ -26,6 +26,6 @@ public class MagmaBucket extends BucketItem {
     @Override
     @Environment(value= EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(tooltip("bucket", text("temperature", "magma_bucket").formatted(Formatting.RED)).formatted(Formatting.RESET, Formatting.GRAY));
+        tooltip.add(tooltip("bucket", simpChemText("temperature", "magma_bucket").formatted(Formatting.RED)).formatted(Formatting.RESET, Formatting.GRAY));
     }
 }

@@ -12,21 +12,29 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "MIT",
-	"icon": "assets/simpchemlib/icon.png",
+	"icon": "assets/simpchemlib/icon_1024.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
 			"zh.qiushui.simpchemlib.SimpChemLib"
 		],
+		"client": [
+			"zh.qiushui.simpchemlib.SimpChemLibClient"
+		],
 		"fabric-datagen": [
 			"zh.qiushui.simpchemlib.datagen.SimpChemLibDataGenerator"
+		],
+		"modmenu": [
+			"zh.qiushui.simpchemlib.config.SimpChemModMenu"
 		]
 	},
 	"depends": {
 		"fabricloader": ">=0.15.11",
 		"minecraft": "~1.20.1",
 		"java": ">=17",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"cloth-config": ">=11",
+		"modmenu": ">=7.1"
 	},
 	"suggests": {
 		"another-mod": "*"

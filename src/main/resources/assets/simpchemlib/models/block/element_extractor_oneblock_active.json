@@ -1,0 +1,12 @@
+{
+	"parent": "simpchemlib:block/element_extractor_oneblock",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "simpchemlib:block/element_extractor/oneblock/element_extractor_front_active",
+		"1": "simpchemlib:block/element_extractor/oneblock/element_extractor_back_active",
+		"2": "simpchemlib:block/element_extractor/oneblock/element_extractor_side_active",
+		"3": "simpchemlib:block/element_extractor/oneblock/element_extractor_top_active",
+		"4": "simpchemlib:block/element_extractor/oneblock/element_extractor_bottom_active",
+		"particle": "#3"
+	}
+}

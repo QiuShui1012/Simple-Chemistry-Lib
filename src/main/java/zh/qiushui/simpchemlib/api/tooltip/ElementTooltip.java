@@ -12,13 +12,13 @@ public class ElementTooltip extends Tooltip{
         tooltip.add(tooltip("z_number", String.valueOf(information.zNumber)));
 
         if (!information.didMassTested) {
-            tooltip.add(text("qualifier", "inaccuracy", tooltip("mass", String.valueOf(information.mass))));
+            tooltip.add(simpChemText("qualifier", "inaccuracy", tooltip("mass", String.valueOf(information.mass))));
         } else {
             tooltip.add(tooltip("mass", String.valueOf(information.mass)));
         }
 
         if (!information.didMetalTypeTested) {
-            tooltip.add(text("qualifier", "inaccuracy", tooltip("metal_type", String.valueOf(information.metalType))));
+            tooltip.add(simpChemText("qualifier", "inaccuracy", tooltip("metal_type", String.valueOf(information.metalType))));
         } else {
             tooltip.add(tooltip("metal_type", String.valueOf(information.metalType)));
         }

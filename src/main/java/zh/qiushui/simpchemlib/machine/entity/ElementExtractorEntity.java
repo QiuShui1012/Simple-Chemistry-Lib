@@ -3,6 +3,7 @@ package zh.qiushui.simpchemlib.machine.entity;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -19,23 +20,27 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import zh.qiushui.simpchemlib.SimpChemLib;
 import zh.qiushui.simpchemlib.api.interfaces.ImplementedInventory;
 import zh.qiushui.simpchemlib.recipe.ElementExtract;
-import zh.qiushui.simpchemlib.screen.ElementExtractorScreenHandler;
+import zh.qiushui.simpchemlib.screen.machine.handler.ElementExtractorScreenHandler;
 
 import java.util.Optional;
 
 import static zh.qiushui.simpchemlib.registry.MachineRegistry.ELEMENT_EXTRACTOR_ENTITY;
 
 public class ElementExtractorEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(2,ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(17,ItemStack.EMPTY);
 
     private static final int INPUT_SLOT = 0;
-    private static final int OUTPUT_SLOT = 1;
+    private static final int OUTPUT_SLOT_START = 1;
+    private static final int OUTPUT_SLOT_END = 16;
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
     private int maxProgress = 36;
+    private boolean active = false;
+    private boolean elaborate = true;
     public ElementExtractorEntity(BlockPos pos, BlockState state) {
         super(ELEMENT_EXTRACTOR_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -67,14 +72,18 @@ public class ElementExtractorEntity extends BlockEntity implements ExtendedScree
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt,inventory);
-        nbt.putInt("element_extractor",progress);
+        nbt.putInt("progress",progress);
+        nbt.putBoolean("active",active);
+        nbt.putBoolean("elaborate",SimpChemLib.CONFIG.isEnableElaborateElementExtractorModel());
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         Inventories.readNbt(nbt,inventory);
-        progress = nbt.getInt("element_extractor");
+        progress = nbt.getInt("progress");
+        active = nbt.getBoolean("active");
+        elaborate = nbt.getBoolean("elaborate");
     }
 
     @Override
@@ -105,6 +114,7 @@ public class ElementExtractorEntity extends BlockEntity implements ExtendedScree
         if (isOutputSlotAvailable()){
             if (this.hasRecipe()){
                 this.increaseCraftProgress();
+                this.setActive();
                 markDirty(world1,pos,state1);
 
                 if (hasCraftingFinished()){
@@ -114,7 +124,7 @@ public class ElementExtractorEntity extends BlockEntity implements ExtendedScree
             }else {
                 this.resetProgress();
             }
-        }else {
+        } else {
             this.resetProgress();
             markDirty(world1, pos, state1);
         }
@@ -122,14 +132,27 @@ public class ElementExtractorEntity extends BlockEntity implements ExtendedScree
 
     private void resetProgress() {
         this.progress = 0;
+        this.active = false;
     }
 
     private void craftItem() {
         this.removeStack(INPUT_SLOT,1);
         Optional<ElementExtract> recipe = getCurrentRecipe();
 
-        this.setStack(OUTPUT_SLOT,new ItemStack(recipe.get().getOutput(null).getItem(),
-                getStack(OUTPUT_SLOT).getCount() + recipe.get().getOutput(null).getCount()));
+        for (int i = OUTPUT_SLOT_START; i <= OUTPUT_SLOT_END; ++i) {
+            if (recipe.isPresent()) {
+                int correctItemCount = getStack(i).getCount() + recipe.get().getOutput(null).getCount();
+                if (correctItemCount <= SimpChemLib.DEFAULT_ELEMENT_ITEM_MAX_COUNT) {
+                    this.setStack(i, new ItemStack(recipe.get().getOutput(null).getItem(),
+                            correctItemCount));
+                } else {
+                    this.setStack(i, new ItemStack(recipe.get().getOutput(null).getItem(),
+                            SimpChemLib.DEFAULT_ELEMENT_ITEM_MAX_COUNT));
+                    this.setStack(i + 1, new ItemStack(recipe.get().getOutput(null).getItem(),
+                            correctItemCount - SimpChemLib.DEFAULT_ELEMENT_ITEM_MAX_COUNT));
+                }
+            }
+        }
     }
 
     private boolean hasCraftingFinished() {
@@ -138,6 +161,12 @@ public class ElementExtractorEntity extends BlockEntity implements ExtendedScree
 
     private void increaseCraftProgress() {
         progress++;
+    }
+
+    private void setActive() {
+        if (!active) {
+            active = true;
+        }
     }
 
     private boolean hasRecipe() {
@@ -156,14 +185,14 @@ public class ElementExtractorEntity extends BlockEntity implements ExtendedScree
     }
 
     private boolean canInsertAmountIntoOutputSlot(ItemStack result) {
-        return this.getStack(OUTPUT_SLOT).getCount() + result.getCount() <= getStack(OUTPUT_SLOT).getMaxCount();
+        return this.getStack(OUTPUT_SLOT_START).getCount() + result.getCount() <= getStack(OUTPUT_SLOT_START).getMaxCount();
     }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {
-        return this.getStack(OUTPUT_SLOT).getItem() == item || this.getStack(OUTPUT_SLOT).isEmpty();
+        return this.getStack(OUTPUT_SLOT_START).getItem() == item || this.getStack(OUTPUT_SLOT_START).isEmpty();
     }
 
     private boolean isOutputSlotAvailable() {
-        return this.getStack(OUTPUT_SLOT).isEmpty() || this.getStack(OUTPUT_SLOT).getCount() < this.getStack(OUTPUT_SLOT).getMaxCount();
+        return this.getStack(OUTPUT_SLOT_START).isEmpty() || this.getStack(OUTPUT_SLOT_START).getCount() < this.getStack(OUTPUT_SLOT_START).getMaxCount();
     }
 }

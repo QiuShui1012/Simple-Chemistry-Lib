@@ -1,4 +1,4 @@
-package zh.qiushui.simpchemlib.screen;
+package zh.qiushui.simpchemlib.screen.machine;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.DrawContext;
@@ -8,7 +8,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import zh.qiushui.simpchemlib.SimpChemLib;
-import zh.qiushui.simpchemlib.machine.ElementExtractor;
+import zh.qiushui.simpchemlib.screen.machine.handler.ElementExtractorScreenHandler;
 
 public class ElementExtractorScreen extends HandledScreen<ElementExtractorScreenHandler> {
     private static final Identifier TEXTURE = new Identifier(SimpChemLib.MOD_ID,"textures/gui/element_extractor_gui.png");
@@ -29,16 +29,16 @@ public class ElementExtractorScreen extends HandledScreen<ElementExtractorScreen
         RenderSystem.setShaderColor(1f,1f,1f,1f);
         RenderSystem.setShaderTexture(0,TEXTURE);
         int x = (width - backgroundWidth) / 2;
-        int y = (height - backgroundHeight) / 2;
+        int y = (height - (backgroundHeight + 18)) / 2;
 
-        context.drawTexture(TEXTURE,x,y,0,0,backgroundWidth,backgroundHeight);
+        context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
         renderProgressArrow(context, x, y);
     }
 
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if (handler.isCrafting()){
-            context.drawTexture(TEXTURE,x + 85, y + 30, 176,0,8,handler.getScaledProgress());
+            context.drawTexture(TEXTURE,x + 85, y + 30, 194,0,8,handler.getScaledProgress());
         }
     }
 

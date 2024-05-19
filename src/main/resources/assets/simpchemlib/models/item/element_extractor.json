@@ -1,0 +1,16 @@
+{
+  "overrides": [
+    {
+      "predicate": {
+        "elaborate": true
+      },
+      "model": "simpchemlib:item/element_extractor_elaborate"
+    },
+    {
+      "predicate": {
+        "elaborate": false
+      },
+      "model": "simpchemlib:item/element_extractor_oneblock"
+    }
+  ]
+}
