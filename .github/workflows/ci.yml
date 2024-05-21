@@ -23,7 +23,7 @@ jobs:
         run: chmod +x ./gradlew
         
       - name: build
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/gradle-build-action@v2.4.2
         with:
           arguments: build
 
@@ -34,7 +34,7 @@ jobs:
           echo "version=$MESSAGE" >> $GITHUB_OUTPUT
         
       - name: capture build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3.1.1
         with:
           name: SimpleChemistryLib ${{ steps.version.outputs.version }}
           path: build/libs/simpchemlib-${{ steps.version.outputs.version }}.jar
