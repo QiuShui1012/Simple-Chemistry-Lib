@@ -30,7 +30,7 @@ public class ElementExtractorScreenHandler extends ScreenHandler {
         this.propertyDelegate = arrayPropertyDelegate;
         this.blockEntity = (ElementExtractorEntity) blockEntity;
 
-        this.addSlot(new Slot(inventory,0,80,11));
+        this.addSlot(new Slot(inventory,0,80,2));
         addOutputInventory();
 
         addPlayerInventory(playerInventory);
@@ -43,7 +43,7 @@ public class ElementExtractorScreenHandler extends ScreenHandler {
     private void addOutputInventory() {
         for (int i = 0; i < 2; ++i) {
             for (int l = 0; l < 8; ++l) {
-                this.addSlot(new Slot(inventory, l + i * 8 + 1, 17 + l * 18, 59 + i * 18));
+                this.addSlot(new Slot(inventory, l + i * 8 + 1, 17 + l * 18, 50 + i * 18));
             }
         }
     }
@@ -51,14 +51,14 @@ public class ElementExtractorScreenHandler extends ScreenHandler {
     private void addPlayerInventory(PlayerInventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 102 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 93 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(PlayerInventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 160));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 151));
         }
     }
 

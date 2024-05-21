@@ -40,7 +40,6 @@ public class ElementExtractorEntity extends BlockEntity implements ExtendedScree
     private int progress = 0;
     private int maxProgress = 36;
     private boolean active = false;
-    private boolean elaborate = true;
     public ElementExtractorEntity(BlockPos pos, BlockState state) {
         super(ELEMENT_EXTRACTOR_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -74,7 +73,6 @@ public class ElementExtractorEntity extends BlockEntity implements ExtendedScree
         Inventories.writeNbt(nbt,inventory);
         nbt.putInt("progress",progress);
         nbt.putBoolean("active",active);
-        nbt.putBoolean("elaborate",SimpChemLib.CONFIG.isEnableElaborateElementExtractorModel());
     }
 
     @Override
@@ -83,7 +81,6 @@ public class ElementExtractorEntity extends BlockEntity implements ExtendedScree
         Inventories.readNbt(nbt,inventory);
         progress = nbt.getInt("progress");
         active = nbt.getBoolean("active");
-        elaborate = nbt.getBoolean("elaborate");
     }
 
     @Override

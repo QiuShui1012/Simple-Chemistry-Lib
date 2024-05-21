@@ -1,12 +1,13 @@
 package zh.qiushui.simpchemlib.datagen;
 
+import com.sun.jna.platform.win32.Tlhelp32;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import zh.qiushui.simpchemlib.SimpChemLib;
 
 public class LanguageEntriesProvider {
     public static final String MOD_ID = "." + SimpChemLib.MOD_ID + ".";
-    public static final String MODMENU = SimpChemLib.MOD_ID + ".modmenu.";
+    // public static final String MODMENU = SimpChemLib.MOD_ID + ".modmenu.";
 
     public static class ChineseEntriesProvider extends FabricLanguageProvider {
         protected ChineseEntriesProvider(FabricDataOutput dataOutput) {
@@ -15,13 +16,13 @@ public class LanguageEntriesProvider {
 
         @Override
         public void generateTranslations(TranslationBuilder translationBuilder) {
-            translationBuilder.add(MODMENU + "title", "简单化学类库 - 配置");
+            // translationBuilder.add(MODMENU + "title", "简单化学类库 - 配置");
 
-            translationBuilder.add(MODMENU + "title.elaborate_model", "精细模型");
+            // translationBuilder.add(MODMENU + "title.elaborate_model", "精细模型");
 
-            translationBuilder.add(MODMENU + "option.elaborate_base", "启用%s精细模型");
+            // translationBuilder.add(MODMENU + "option.elaborate_base", "启用%s精细模型");
 
-            translationBuilder.add(MODMENU + "tooltip.elaborate_base", "目前%s已有两种模型：精细和简单\n默认为精细模型，若设置为关闭，则启用简单模型");
+            // translationBuilder.add(MODMENU + "tooltip.elaborate_base", "目前%s已有两种模型：精细和简单\n默认为精细模型，若设置为关闭，则启用简单模型");
 
             translationBuilder.add("itemGroup" + MOD_ID + "bucket", "简单化学类库|桶");
             translationBuilder.add("itemGroup" + MOD_ID + "machine", "简单化学类库|机器");
@@ -32,7 +33,7 @@ public class LanguageEntriesProvider {
             translationBuilder.add("tooltip" + MOD_ID + "mass", "原子量：%s");
             translationBuilder.add("tooltip" + MOD_ID + "metal_type", "金属类型：%s");
             translationBuilder.add("tooltip" + MOD_ID + "bucket", "支持温度：%s");
-            translationBuilder.add("tooltip" + MOD_ID + "modmenu.restart", "重载模组生效");
+            // translationBuilder.add("tooltip" + MODMENU + "restart", "修改此项会强制重载资源包");
 
             translationBuilder.add("qualifier" + MOD_ID + "inaccurate", "%s（未测定）");
 
@@ -57,6 +58,8 @@ public class LanguageEntriesProvider {
             translationBuilder.add("item" + MOD_ID + "magma_bucket", "岩浆桶");
 
             translationBuilder.add("container.element_extractor", "元素提取机");
+
+            translationBuilder.add("resourcePack" + MOD_ID + "elaborate_model", "精细模型");
         }
     }
 
@@ -67,13 +70,13 @@ public class LanguageEntriesProvider {
 
         @Override
         public void generateTranslations(TranslationBuilder translationBuilder) {
-            translationBuilder.add(MODMENU + "title", "Simple Chemistry Lib - Configuration");
+            // translationBuilder.add(MODMENU + "title", "Simple Chemistry Lib - Configuration");
 
-            translationBuilder.add(MODMENU + "title.elaborate_model", "Elaborate model");
+            // translationBuilder.add(MODMENU + "title.elaborate_model", "Elaborate model");
 
-            translationBuilder.add(MODMENU + "option.elaborate_base", "Enable %s elaborate model");
+            // translationBuilder.add(MODMENU + "option.elaborate_base", "Enable %s elaborate model");
 
-            translationBuilder.add(MODMENU + "tooltip.elaborate_base", "Currently, there are two models for %s: Elaborate and Simple\nDefault to elaborate model, if set to off, enable simple model");
+            // translationBuilder.add(MODMENU + "tooltip.elaborate_base", "Currently, there are two models for %s: Elaborate and Simple\nDefault to elaborate model, if set to off, enable simple model");
 
             translationBuilder.add("itemGroup" + MOD_ID + "bucket", "Simple Chemistry Lib: Buckets");
             translationBuilder.add("itemGroup" + MOD_ID + "machine", "Simple Chemistry Lib: Machines");
@@ -84,7 +87,7 @@ public class LanguageEntriesProvider {
             translationBuilder.add("tooltip" + MOD_ID + "mass", "Atomic mass: %s");
             translationBuilder.add("tooltip" + MOD_ID + "metal_type", "Metal type: %s");
             translationBuilder.add("tooltip" + MOD_ID + "bucket", "Supported temperature: %s");
-            translationBuilder.add("tooltip" + MOD_ID + "modmenu.restart", "Take effect after reloading mod");
+            // translationBuilder.add("tooltip" + MOD_ID + "modmenu.restart", "Modifying this option forces the resource pack to be reloaded");
 
             translationBuilder.add("qualifier" + MOD_ID + "inaccurate", "%s (Untested)");
 
@@ -109,6 +112,8 @@ public class LanguageEntriesProvider {
             translationBuilder.add("item" + MOD_ID + "magma_bucket", "Magma Bucket");
 
             translationBuilder.add("container.element_extractor", "Element Extractor");
+
+            translationBuilder.add("resourcePack" + MOD_ID + "elaborate_model", "Elaborate Model");
         }
     }
 }

@@ -23,9 +23,6 @@
 		],
 		"fabric-datagen": [
 			"zh.qiushui.simpchemlib.datagen.SimpChemLibDataGenerator"
-		],
-		"modmenu": [
-			"zh.qiushui.simpchemlib.config.SimpChemModMenu"
 		]
 	},
 	"depends": {

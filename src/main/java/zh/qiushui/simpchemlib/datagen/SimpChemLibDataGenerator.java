@@ -9,5 +9,6 @@ public class SimpChemLibDataGenerator implements DataGeneratorEntrypoint {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 		pack.addProvider(LanguageEntriesProvider.ChineseEntriesProvider::new);
 		pack.addProvider(LanguageEntriesProvider.EnglishEntriesProvider::new);
+		pack.addProvider(ObjectModelProvider::new);
 	}
 }

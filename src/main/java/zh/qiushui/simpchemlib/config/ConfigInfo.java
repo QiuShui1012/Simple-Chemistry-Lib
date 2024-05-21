@@ -6,14 +6,6 @@ import zh.qiushui.simpchemlib.SimpChemLib;
 import zh.qiushui.simpchemlib.datagen.LanguageEntriesProvider;
 
 public enum ConfigInfo {
-    ELABORATE_MODEL(Text.translatable("simpchemlib.modmenu.title.elaborate_model").getString(), false,
-            Entry.bool(Text.translatable("simpchemlib.modmenu.option.elaborate_base", Text.translatable("block.simpchemlib.element_extractor")).getString(),
-                    SimpChemLib.CONFIG::isEnableElaborateElementExtractorModel,
-                    SimpChemLib.CONFIG::setEnableElaborateElementExtractorModel, true,
-                    Text.translatable("simpchemlib.modmenu.tooltip.elaborate_base", Text.translatable("block.simpchemlib.element_extractor")).getString(),
-                    Text.translatable("tooltip." + SimpChemLib.MOD_ID + ".modmenu.restart").formatted(Formatting.RED).toString())
-    ),
-
     ;
 
     private final String text;

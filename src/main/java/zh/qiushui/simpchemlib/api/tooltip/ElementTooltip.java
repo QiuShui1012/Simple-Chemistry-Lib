@@ -7,18 +7,18 @@ import java.util.List;
 
 public class ElementTooltip extends Tooltip{
     public static void addElementTooltip(List<Text> tooltip, Element information, Object... args) {
-        tooltip.add(tooltip("full_name", information.nameMap.get("en_us")));
-        tooltip.add(tooltip("symbol", information.symbol));
-        tooltip.add(tooltip("z_number", String.valueOf(information.zNumber)));
+        tooltip.add(simpChemTooltip("full_name", information.nameMap.get("en_us")));
+        tooltip.add(simpChemTooltip("symbol", information.symbol));
+        tooltip.add(simpChemTooltip("z_number", String.valueOf(information.zNumber)));
 
         if (!information.didMassTested) {
-            tooltip.add(simpChemText("qualifier", "inaccuracy", tooltip("mass", String.valueOf(information.mass))));
+            tooltip.add(Text.translatable("qualifier.simpchemlib.inaccuracy", tooltip("mass", String.valueOf(information.mass))));
         } else {
             tooltip.add(tooltip("mass", String.valueOf(information.mass)));
         }
 
         if (!information.didMetalTypeTested) {
-            tooltip.add(simpChemText("qualifier", "inaccuracy", tooltip("metal_type", String.valueOf(information.metalType))));
+            tooltip.add(Text.translatable("qualifier.simpchemlib.inaccuracy", tooltip("metal_type", String.valueOf(information.metalType))));
         } else {
             tooltip.add(tooltip("metal_type", String.valueOf(information.metalType)));
         }

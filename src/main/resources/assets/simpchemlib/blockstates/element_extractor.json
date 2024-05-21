@@ -1,16 +1,12 @@
 {
   "variants": {
-    "facing=north,elaborate=true": { "model": "simpchemlib:block/element_extractor_elaborate", "uvlock": false },
-    "facing=east,elaborate=true":  { "model": "simpchemlib:block/element_extractor_elaborate", "y":  90, "uvlock": false },
-    "facing=south,elaborate=true": { "model": "simpchemlib:block/element_extractor_elaborate", "y": 180, "uvlock": false },
-    "facing=west,elaborate=true":  { "model": "simpchemlib:block/element_extractor_elaborate", "y": 270, "uvlock": false },
-    "facing=north,elaborate=false,active=true": { "model": "simpchemlib:block/element_extractor_oneblock", "uvlock": false },
-    "facing=east,elaborate=false,active=true":  { "model": "simpchemlib:block/element_extractor_oneblock", "y":  90, "uvlock": false },
-    "facing=south,elaborate=false,active=true": { "model": "simpchemlib:block/element_extractor_oneblock", "y": 180, "uvlock": false },
-    "facing=west,elaborate=false,active=true":  { "model": "simpchemlib:block/element_extractor_oneblock", "y": 270, "uvlock": false },
-    "facing=north,elaborate=false,active=false": { "model": "simpchemlib:block/element_extractor_oneblock_active", "uvlock": true },
-    "facing=east,elaborate=false,active=false":  { "model": "simpchemlib:block/element_extractor_oneblock_active", "y":  90, "uvlock": false },
-    "facing=south,elaborate=false,active=false": { "model": "simpchemlib:block/element_extractor_oneblock_active", "y": 180, "uvlock": false },
-    "facing=west,elaborate=false,active=false":  { "model": "simpchemlib:block/element_extractor_oneblock_active", "y": 270, "uvlock": false }
+    "facing=north,active=false": { "model": "simpchemlib:block/element_extractor_oneblock", "uvlock": false },
+    "facing=east,active=false":  { "model": "simpchemlib:block/element_extractor_oneblock", "y":  90, "uvlock": false },
+    "facing=south,active=false": { "model": "simpchemlib:block/element_extractor_oneblock", "y": 180, "uvlock": false },
+    "facing=west,active=false":  { "model": "simpchemlib:block/element_extractor_oneblock", "y": 270, "uvlock": false },
+    "facing=north,active=true": { "model": "simpchemlib:block/element_extractor_oneblock_active", "uvlock": false },
+    "facing=east,active=true":  { "model": "simpchemlib:block/element_extractor_oneblock_active", "y":  90, "uvlock": false },
+    "facing=south,active=true": { "model": "simpchemlib:block/element_extractor_oneblock_active", "y": 180, "uvlock": false },
+    "facing=west,active=true":  { "model": "simpchemlib:block/element_extractor_oneblock_active", "y": 270, "uvlock": false }
   }
 }

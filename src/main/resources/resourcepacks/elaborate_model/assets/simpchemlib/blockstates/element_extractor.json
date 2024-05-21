@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "simpchemlib:block/element_extractor", "uvlock": false },
+    "facing=east":  { "model": "simpchemlib:block/element_extractor", "y":  90, "uvlock": false },
+    "facing=south": { "model": "simpchemlib:block/element_extractor", "y": 180, "uvlock": false },
+    "facing=west":  { "model": "simpchemlib:block/element_extractor", "y": 270, "uvlock": false }
+  }
+}

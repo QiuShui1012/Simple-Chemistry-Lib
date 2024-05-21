@@ -1,6 +1,7 @@
 package zh.qiushui.simpchemlib.api.definition.map;
 
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import zh.qiushui.simpchemlib.api.definition.MetalTypes;
 import zh.qiushui.simpchemlib.api.exception.OutOfRangeException;
@@ -8,7 +9,6 @@ import zh.qiushui.simpchemlib.api.exception.OutOfRangeException;
 import java.util.Map;
 
 import static zh.qiushui.simpchemlib.api.exception.OutOfRangeException.oorErrorMsg;
-import static zh.qiushui.simpchemlib.api.tooltip.Tooltip.simpChemText;
 
 public class MetalTypeMap {
     public static final Map<Integer, String> METAL_TYPE_MAP = Map.ofEntries(
@@ -27,9 +27,9 @@ public class MetalTypeMap {
 
     public static MutableText getTextMetalName(int metalType, Object... args) {
         if (metalType < 11 && metalType >= 0) {
-            return simpChemText("metalType" , METAL_TYPE_MAP.get(metalType), args);
+            return Text.translatable("metalType.simpchemlib." + METAL_TYPE_MAP.get(metalType), args);
         } else if (metalType >= 11 && metalType <= 18) {
-            return simpChemText("qualifier", "inaccuracy", simpChemText("metalType", METAL_TYPE_MAP.get(metalType - 10), args)).formatted(Formatting.GRAY);
+            return Text.translatable("qualifier.simpchemlib.inaccuracy", Text.translatable("metalType.simpchemlib." + METAL_TYPE_MAP.get(metalType - 10), args)).formatted(Formatting.GRAY);
         } else {
             zh.qiushui.simpchemlib.SimpChemLib.LOGGER.error(oorErrorMsg(metalType), new OutOfRangeException());
             return null;
@@ -38,9 +38,9 @@ public class MetalTypeMap {
 
     public static String getStringMetalName(int metalType, Object... args) {
         if (metalType < 11 && metalType >= 0) {
-            return simpChemText("metalType" , METAL_TYPE_MAP.get(metalType), args).toString();
+            return Text.translatable("metalType.simpchemlib." + METAL_TYPE_MAP.get(metalType), args).toString();
         } else if (metalType >= 11 && metalType <= 18) {
-            return simpChemText("qualifier", "inaccuracy", simpChemText("metalType", METAL_TYPE_MAP.get(metalType - 10), args)).formatted(Formatting.GRAY).toString();
+            return Text.translatable("qualifier.simpchemlib.inaccuracy", Text.translatable("metalType.simpchemlib." + METAL_TYPE_MAP.get(metalType - 10), args)).formatted(Formatting.GRAY).toString();
         } else {
             zh.qiushui.simpchemlib.SimpChemLib.LOGGER.error(oorErrorMsg(metalType), new OutOfRangeException());
             return null;

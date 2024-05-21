@@ -45,69 +45,23 @@ import java.util.Objects;
 import static net.minecraft.block.HorizontalFacingBlock.FACING;
 
 public class ElementExtractor extends BlockWithEntity implements BlockEntityProvider {
-    private static final BooleanProperty ELABORATE = BooleanProperty.of("elaborate");
-    private static final BooleanProperty ACTIVE = BooleanProperty.of("active");
-
-    private static final VoxelShape ELABORATE_NORTH_INCREASE_AABB = VoxelShapes.union(
-            Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 4.0, 16.0),
-            Block.createCuboidShape(2.0, 4.0, 5.0, 8.0, 13.0, 11.0),
-            Block.createCuboidShape(12.0, 4.0, 7.0, 14.0, 14.0, 9.0)
-    );
-    private static final VoxelShape ELABORATE_SOUTH_INCREASE_AABB = VoxelShapes.union(
-            Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 4.0, 16.0),
-            Block.createCuboidShape(8.0, 4.0, 5.0, 14.0, 13.0, 11.0),
-            Block.createCuboidShape(2.0, 4.0, 7.0, 4.0, 14.0, 9.0)
-    );
-    private static final VoxelShape ELABORATE_EAST_INCREASE_AABB = VoxelShapes.union(
-            Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 4.0, 16.0),
-            Block.createCuboidShape(5.0, 4.0, 2.0, 11.0, 13.0, 8.0),
-            Block.createCuboidShape(7.0, 4.0, 12.0, 9.0, 14.0, 14.0)
-    );
-    private static final VoxelShape ELABORATE_WEST_INCREASE_AABB = VoxelShapes.union(
-            Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 4.0, 16.0),
-            Block.createCuboidShape(5.0, 4.0, 8.0, 11.0, 13.0, 14.0),
-            Block.createCuboidShape(7.0, 4.0, 2.0, 9.0, 14.0, 4.0)
-    );
-    private static final VoxelShape NORTH_AABB = VoxelShapes.combineAndSimplify(VoxelShapes.empty(), ELABORATE_NORTH_INCREASE_AABB, BooleanBiFunction.NOT_SAME);
-    private static final VoxelShape SOUTH_AABB = VoxelShapes.combineAndSimplify(VoxelShapes.empty(), ELABORATE_SOUTH_INCREASE_AABB, BooleanBiFunction.NOT_SAME);
-    private static final VoxelShape EAST_AABB = VoxelShapes.combineAndSimplify(VoxelShapes.empty(), ELABORATE_EAST_INCREASE_AABB, BooleanBiFunction.NOT_SAME);
-    private static final VoxelShape WEST_AABB = VoxelShapes.combineAndSimplify(VoxelShapes.empty(), ELABORATE_WEST_INCREASE_AABB, BooleanBiFunction.NOT_SAME);
+    public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
 
     public ElementExtractor(Settings settings) {
         super(settings);
         setDefaultState(getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
-        setDefaultState(getDefaultState().with(ELABORATE, true));
         setDefaultState(getDefaultState().with(ACTIVE, false));
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(Properties.HORIZONTAL_FACING);
-        builder.add(ELABORATE);
         builder.add(ACTIVE);
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (SimpChemLib.CONFIG.isEnableElaborateElementExtractorModel()) {
-            Direction dir = state.get(FACING);
-            switch (dir) {
-                default -> {
-                    return NORTH_AABB;
-                }
-                case SOUTH -> {
-                    return SOUTH_AABB;
-                }
-                case EAST -> {
-                    return EAST_AABB;
-                }
-                case WEST -> {
-                    return WEST_AABB;
-                }
-            }
-        } else {
-            return VoxelShapes.fullCube();
-        }
+        return VoxelShapes.fullCube();
     }
 
     @Override

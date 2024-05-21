@@ -1,11 +1,11 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "simpchemlib:block/element_extractor/elaborate/element_extractor_bottle",
-		"3": "simpchemlib:block/element_extractor/elaborate/element_extractor_arm",
-		"4": "simpchemlib:block/element_extractor/elaborate/element_extractor_side",
-		"5": "simpchemlib:block/element_extractor/elaborate/element_extractor_bottom",
-		"particle": "simpchemlib:block/element_extractor/elaborate/element_extractor_bottom"
+		"1": "simpchemlib:block/element_extractor/element_extractor_bottle",
+		"3": "simpchemlib:block/element_extractor/element_extractor_arm",
+		"4": "simpchemlib:block/element_extractor/element_extractor_side",
+		"5": "simpchemlib:block/element_extractor/element_extractor_bottom",
+		"particle": "#5"
 	},
 	"elements": [
 		{
@@ -274,39 +274,6 @@
 			}
 		}
 	],
-	"display": {
-		"thirdperson_righthand": {
-			"rotation": [45, 0, 0],
-			"translation": [0, 1.25, -0.5],
-			"scale": [0.3, 0.3, 0.3]
-		},
-		"thirdperson_lefthand": {
-			"rotation": [45, 0, 0],
-			"translation": [0, 1.25, -0.5],
-			"scale": [0.3, 0.3, 0.3]
-		},
-		"firstperson_righthand": {
-			"rotation": [0, 0, 10],
-			"translation": [1.75, 1.5, 0],
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"firstperson_lefthand": {
-			"rotation": [0, 0, 10],
-			"translation": [1.75, 1.5, 0],
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"ground": {
-			"scale": [0.35, 0.35, 0.35]
-		},
-		"gui": {
-			"rotation": [30, 45, 0],
-			"translation": [0, 1.5, 0],
-			"scale": [0.6, 0.65, 0.6]
-		},
-		"fixed": {
-			"translation": [0, 0, -2]
-		}
-	},
 	"groups": [
 		0,
 		{
