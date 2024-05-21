@@ -11,7 +11,7 @@ base {
 
 	String buildNumber
 	buildNumber = System.getenv("GITHUB_RUN_NUMBER")
-	version = "${project.mod_version}" + (buildNumber != null ? "+build.${buildNumber}" : "")
+	version = buildNumber != null ? "+build.${buildNumber}" : ""
 }
 
 repositories {
