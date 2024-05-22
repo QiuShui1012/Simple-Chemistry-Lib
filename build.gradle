@@ -7,11 +7,11 @@ version = project.mod_version
 group = project.maven_group
 
 base {
-	archivesName = "${project.mod_name}-${project.minecraft_version}-" + version
+	archivesName = "${project.mod_name}-1.20.1-${version}"
 
 	String buildNumber
 	buildNumber = System.getenv("GITHUB_RUN_NUMBER")
-	version = buildNumber != null ? "+build.${buildNumber}" : ""
+	version = project.mod_version + (buildNumber != null ? "+build.${buildNumber}" : "")
 }
 
 repositories {
