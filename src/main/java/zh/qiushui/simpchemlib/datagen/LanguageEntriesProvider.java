@@ -86,6 +86,8 @@ public class LanguageEntriesProvider {
             translationBuilder.add("tooltip" + MOD_ID + "z_number", "Atomic number: %s");
             translationBuilder.add("tooltip" + MOD_ID + "mass", "Atomic mass: %s");
             translationBuilder.add("tooltip" + MOD_ID + "metal_type", "Metal type: %s");
+            translationBuilder.add("tooltip" + MOD_ID + "fluid_temp", "Fluid temperature: %s");
+            translationBuilder.add("tooltip" + MOD_ID + "gas_temp", "Gas temperature: %s");
             translationBuilder.add("tooltip" + MOD_ID + "bucket", "Supported temperature: %s");
             // translationBuilder.add("tooltip" + MOD_ID + "modmenu.restart", "Modifying this option forces the resource pack to be reloaded");
 

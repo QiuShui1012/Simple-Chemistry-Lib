@@ -12,4 +12,8 @@ public class I18nNameMap extends HashMap<String, String> {
         map.addEntry("en_us", defaultValue);
         return map;
     }
+
+    public String getValueFromCode(String languageCode) {
+        return this.getOrDefault(languageCode, "default value");
+    }
 }

@@ -22,5 +22,8 @@ public class ElementTooltip extends Tooltip{
         } else {
             tooltip.add(tooltip("metal_type", String.valueOf(information.metalType)));
         }
+
+        tooltip.add(simpChemTooltip("fluid_temp", information.fluidTemp));
+        tooltip.add(simpChemTooltip("gas_temp", information.gasTemp));
     }
 }
