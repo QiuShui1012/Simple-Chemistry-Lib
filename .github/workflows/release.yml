@@ -1,6 +1,6 @@
 name: build
 
-on: [ pull_request, push ]
+on: [ release ]
 
 permissions:
   contents: write
@@ -44,5 +44,5 @@ jobs:
       #  env:
       #    REPO: git@github.com:QiuShui1012/maven.git
       #    BRANCH: simple-chemistry-lib
-      #    FOLDER: snapshot
+      #    FOLDER: release
       #    SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
