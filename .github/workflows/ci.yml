@@ -18,6 +18,9 @@ jobs:
           distribution: zulu
           java-version: 17
 
+      - name: Setup Maven
+        run: sudo apt-get install maven
+
       - name: Make Gradle Wrapper executable
         if: ${{ runner.os != 'Windows' }}
         run: chmod +x ./gradlew
@@ -30,7 +33,7 @@ jobs:
       - name: Get Version
         id: version
         run: |
-          MESSAGE=$(ls build/libs/* | grep sources.jar -v | grep shadow.jar -v | grep slim.jar -v | awk -F 'SimpleChemistryLib-|.jar' '{print $2}')
+          MESSAGE=$(ls build/libs/* | grep sources.jar -v | awk -F 'SimpleChemistryLib-|.jar' '{print $2}')
           echo "version=$MESSAGE" >> $GITHUB_OUTPUT
 
       - name: Upload build artifacts
@@ -39,14 +42,20 @@ jobs:
           name: SimpleChemistryLib ${{ steps.version.outputs.version }}
           path: build/libs/SimpleChemistryLib-${{ steps.version.outputs.version }}.jar
 
-      - name: Set up SSH key
+      - name: Get Mod Version
+        id: mod_version
         run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          MESSAGE=$(ls build/libs/* | grep sources.jar -v | awk -F 'SimpleChemistryLib-1.20.1-|-|.jar' '{print $3}')
+          echo "version=$MESSAGE" >> $GITHUB_OUTPUT
 
-      - name: Publish package
-        run: ./gradlew publish -Pbranch=snapshot
+      - name: Build Maven
+        run: |
+          mvn deploy:deploy-file -DgroupId=zh.qiushui.mods -DartifactId=SimpleChemistryLib -Dversion=${{ steps.mod_version.outputs.version }} -Dpackaging=jar -Dfile=build/libs/SimpleChemistryLib-${{ steps.version.outputs.version }}.jar -Durl=file:/mvn-repo/
+
+      - name: Publish to target repo
+        uses: s0/git-publish-subdir-action@develop
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REPO: git@github.com:QiuShui1012/maven.git
+          BRANCH: snapshot
+          FOLDER: zh
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
