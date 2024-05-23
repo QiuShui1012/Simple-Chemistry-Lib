@@ -39,10 +39,14 @@ jobs:
           name: SimpleChemistryLib ${{ steps.version.outputs.version }}
           path: build/libs/SimpleChemistryLib-${{ steps.version.outputs.version }}.jar
 
-      #- name: to target repo
-      #  uses: s0/git-publish-subdir-action@develop
-      #  env:
-      #    REPO: git@github.com:QiuShui1012/maven.git
-      #    BRANCH: simple-chemistry-lib
-      #    FOLDER: snapshot
-      #    SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Publish package
+        run: ./gradlew publish -Pbranch=snapshot
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}

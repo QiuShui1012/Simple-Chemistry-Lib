@@ -70,17 +70,20 @@ jar {
 // configure the maven publication
 publishing {
 	publications {
-		create("mavenJava", MavenPublication) {
-			artifactId = project.mod_id
+		create("SimpChemLib", MavenPublication) {
+			groupId = project.maven_group
+			artifactId = project.mod_name
+			version = version
+
 			from components.java
 		}
 	}
 
 	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
 	repositories {
-		// Add repositories to publish to here.
-		// Notice: This block does NOT have the same function as the block in the top level.
-		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
+		maven {
+			name = "QiuShui-Mods"
+			url = "https://raw.github.com/QiuShui1012/maven/"
+		}
 	}
 }
