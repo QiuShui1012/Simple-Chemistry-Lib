@@ -45,7 +45,7 @@ jobs:
       - name: Get Mod Version
         id: mod_version
         run: |
-          MESSAGE=$(ls build/libs/* | grep sources.jar -v | awk -F 'SimpleChemistryLib-1.20.1-|-|.jar' '{print $3}')
+          MESSAGE=$(ls build/libs/* | grep sources.jar -v | awk -F '-|.jar' '{print $7}')
           echo "version=$MESSAGE" >> $GITHUB_OUTPUT
 
       - name: Build Maven
@@ -57,5 +57,6 @@ jobs:
         env:
           REPO: git@github.com:QiuShui1012/maven.git
           BRANCH: snapshot
-          FOLDER: zh
+          FOLDER: mvn-repo/zh/qiushui/mods/SimpleChemistryLib
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          TARGET_DIR: zh/qiushui/mods
