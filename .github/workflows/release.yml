@@ -1,6 +1,8 @@
 name: build
 
-on: [ release ]
+on:
+  release:
+    type: [ created ]
 
 permissions:
   contents: write
