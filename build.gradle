@@ -10,7 +10,7 @@ base {
 
 	String buildNumber
 	buildNumber = System.getenv("GITHUB_RUN_NUMBER")
-	version = project.mod_version + (buildNumber != null ? "+build.${buildNumber}" : "")
+	version = buildNumber != null ? "+build.${buildNumber}" : ""
 }
 
 repositories {
@@ -40,7 +40,7 @@ dependencies {
 }
 
 processResources {
-	inputs.property "version", project.version
+	inputs.property "version", project.mod_version
 }
 
 tasks.withType(JavaCompile).configureEach {
