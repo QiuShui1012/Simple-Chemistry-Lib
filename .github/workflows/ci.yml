@@ -41,22 +41,3 @@ jobs:
         with:
           name: SimpleChemistryLib ${{ steps.version.outputs.version }}
           path: build/libs/SimpleChemistryLib-${{ steps.version.outputs.version }}.jar
-
-      - name: Get Mod Version
-        id: mod_version
-        run: |
-          MESSAGE=$(ls build/libs/* | grep sources.jar -v | awk -F '-|.jar' '{print $7}')
-          echo "version=$MESSAGE" >> $GITHUB_OUTPUT
-
-      - name: Build Maven
-        run: |
-          mvn deploy:deploy-file -DgroupId=zh.qiushui.mods -DartifactId=SimpleChemistryLib -Dversion=${{ steps.mod_version.outputs.version }} -Dpackaging=jar -Dfile=build/libs/SimpleChemistryLib-${{ steps.version.outputs.version }}.jar -Durl=file:/mvn-repo/
-
-      - name: Publish to target repo
-        uses: s0/git-publish-subdir-action@develop
-        env:
-          REPO: git@github.com:QiuShui1012/maven.git
-          BRANCH: snapshot
-          FOLDER: mvn-repo/zh/qiushui/mods/SimpleChemistryLib
-          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
-          TARGET_DIR: zh/qiushui/mods
