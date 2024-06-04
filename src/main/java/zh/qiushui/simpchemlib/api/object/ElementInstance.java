@@ -1,6 +1,7 @@
 package zh.qiushui.simpchemlib.api.object;
 
 import net.minecraft.item.Item;
+import org.jetbrains.annotations.NotNull;
 import zh.qiushui.simpchemlib.api.information.Element;
 import zh.qiushui.simpchemlib.api.object.fluid.ElementFluid;
 import zh.qiushui.simpchemlib.api.object.fluid.ElementHighTempFluid;
@@ -65,32 +66,33 @@ public class ElementInstance {
         public ElementLowTempGas lowTempGas;
         public ArrayList<Integer> has;
 
+        @NotNull
         public Builder hasBlock(ElementBlock block, ElementBlockItem blockItem) {
             this.elementBlock = block;
             this.elementBlockItem = blockItem;
             this.has.add(0);
             return this;
         }
-
+        @NotNull
         public Builder hasItem(ElementItem item) {
             this.elementItem = item;
             this.has.add(1);
             return this;
         }
-
+        @NotNull
         public Builder hasIngotAndNugget(Item ingot, Item nugget) {
             this.ingot = ingot;
             this.nugget = nugget;
             this.has.add(2);
             return this;
         }
-
+        @NotNull
         public Builder hasGem(GemItem gem) {
             this.gem = gem;
             this.has.add(3);
             return this;
         }
-
+        @NotNull
         public Builder hasFluid(int isHighTemp, Object fluid) {
             switch (isHighTemp) {
                 case HIGH_TEMP -> {
@@ -108,7 +110,7 @@ public class ElementInstance {
             }
             return this;
         }
-
+        @NotNull
         public Builder hasGas(int isHighTemp, Object gas) {
             switch (isHighTemp) {
                 case HIGH_TEMP -> {

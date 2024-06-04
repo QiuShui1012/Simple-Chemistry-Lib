@@ -16,6 +16,7 @@ import zh.qiushui.simpchemlib.registry.MachineRegistry;
 public class SimpChemLib implements ModInitializer {
 	public static final String MOD_ID = "simpchemlib";
 	public static final int DEFAULT_ELEMENT_ITEM_MAX_COUNT = 256;
+	public static final int ROOM_TEMPERATURE = 25;
     public static final Logger LOGGER = LoggerFactory.getLogger("QiuShui's Chemistry Lib");
 	public static final SimpChemConfig CONFIG = new SimpChemConfig();
 

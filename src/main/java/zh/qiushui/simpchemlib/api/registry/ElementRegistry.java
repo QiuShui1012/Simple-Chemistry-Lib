@@ -23,43 +23,43 @@ public class ElementRegistry {
     private static final String DEFAULT = "en_us";
 
     public void registerBlock(String modId, Element information, ElementBlock block, ElementBlockItem blockItem) {
-        Registry.register(Registries.BLOCK, new Identifier(modId, information.nameMap.get(DEFAULT).toLowerCase() + "_block"), block);
-        Registry.register(Registries.ITEM, new Identifier(modId, information.nameMap.get(DEFAULT).toLowerCase() + "_block"), blockItem);
-        registerElementToMap(information.zNumber, information);
+        Registry.register(Registries.BLOCK, new Identifier(modId, information.nameMap().get(DEFAULT).toLowerCase() + "_block"), block);
+        Registry.register(Registries.ITEM, new Identifier(modId, information.nameMap().get(DEFAULT).toLowerCase() + "_block"), blockItem);
+        registerElementToMap(information.zNumber(), information);
     }
 
     public void registerItem(String modId, Element information, ElementItem item) {
-        Registry.register(Registries.ITEM, new Identifier(modId, information.nameMap.get(DEFAULT).toLowerCase()), item);
-        registerElementToMap(information.zNumber, information);
+        Registry.register(Registries.ITEM, new Identifier(modId, information.nameMap().getValueFromCode(DEFAULT).toLowerCase()), item);
+        registerElementToMap(information.zNumber(), information);
     }
 
     public void registerMetal(String modId, Element information, Item ingot, Item nugget) {
-        Registry.register(Registries.ITEM, new Identifier(modId, information.nameMap.get(DEFAULT).toLowerCase() + "_ingot"), ingot);
-        Registry.register(Registries.ITEM, new Identifier(modId, information.nameMap.get(DEFAULT).toLowerCase() + "_nugget"), nugget);
+        Registry.register(Registries.ITEM, new Identifier(modId, information.nameMap().getValueFromCode(DEFAULT).toLowerCase() + "_ingot"), ingot);
+        Registry.register(Registries.ITEM, new Identifier(modId, information.nameMap().getValueFromCode(DEFAULT).toLowerCase() + "_nugget"), nugget);
     }
 
     public void registerGem(String modId, Element information, GemItem gem) {
         Registry.register(Registries.ITEM, new Identifier(modId, gem.gemName.toLowerCase()), gem);
-        Registry.register(Registries.ITEM, new Identifier(modId, information.nameMap.get(DEFAULT).toLowerCase() + "_gem"), gem);
+        Registry.register(Registries.ITEM, new Identifier(modId, information.nameMap().getValueFromCode(DEFAULT).toLowerCase() + "_gem"), gem);
     }
 
     public void registerFluid(String modId, Element information, int temp, Object fluid) {
         if (temp == 4) {
-            Registry.register(Registries.FLUID, new Identifier(modId, information.nameMap.get(DEFAULT).toLowerCase() + "_fluid"), (ElementHighTempFluid) fluid);
+            Registry.register(Registries.FLUID, new Identifier(modId, information.nameMap().getValueFromCode(DEFAULT).toLowerCase() + "_fluid"), (ElementHighTempFluid) fluid);
         } else if (temp == 5) {
-            Registry.register(Registries.FLUID, new Identifier(modId, information.nameMap.get(DEFAULT).toLowerCase() + "_fluid"), (ElementFluid) fluid);
+            Registry.register(Registries.FLUID, new Identifier(modId, information.nameMap().getValueFromCode(DEFAULT).toLowerCase() + "_fluid"), (ElementFluid) fluid);
         } else if (temp == 6) {
-            Registry.register(Registries.FLUID, new Identifier(modId, information.nameMap.get(DEFAULT).toLowerCase() + "_fluid"), (ElementLowTempFluid) fluid);
+            Registry.register(Registries.FLUID, new Identifier(modId, information.nameMap().getValueFromCode(DEFAULT).toLowerCase() + "_fluid"), (ElementLowTempFluid) fluid);
         }
     }
 
     public void registerGas(String modId, Element information, int temp, Object gas) {
         if (temp == 7) {
-            Registry.register(Registries.FLUID, new Identifier(modId, information.nameMap.get(DEFAULT).toLowerCase() + "_gas"), (ElementHighTempGas) gas);
+            Registry.register(Registries.FLUID, new Identifier(modId, information.nameMap().getValueFromCode(DEFAULT).toLowerCase() + "_gas"), (ElementHighTempGas) gas);
         } else if (temp == 8) {
-            Registry.register(Registries.FLUID, new Identifier(modId, information.nameMap.get(DEFAULT).toLowerCase() + "_gas"), (ElementGas) gas);
+            Registry.register(Registries.FLUID, new Identifier(modId, information.nameMap().getValueFromCode(DEFAULT).toLowerCase() + "_gas"), (ElementGas) gas);
         } else if (temp == 9) {
-            Registry.register(Registries.FLUID, new Identifier(modId, information.nameMap.get(DEFAULT).toLowerCase() + "_gas"), (ElementLowTempGas) gas);
+            Registry.register(Registries.FLUID, new Identifier(modId, information.nameMap().getValueFromCode(DEFAULT).toLowerCase() + "_gas"), (ElementLowTempGas) gas);
         }
     }
 
@@ -77,22 +77,22 @@ public class ElementRegistry {
             registerGem(modId, information, instance.gem);
         }
         if (instance.has.contains(4)) {
-            registerFluid(modId, information, 4, instance.highTempFluid);
+            registerFluid(modId, information, ElementInstance.HIGH_TEMP, instance.highTempFluid);
         }
         if (instance.has.contains(5)) {
-            registerFluid(modId, information, 5, instance.mediumTempFluid);
+            registerFluid(modId, information, ElementInstance.MEDIUM_TEMP, instance.mediumTempFluid);
         }
         if (instance.has.contains(6)) {
-            registerFluid(modId, information, 6, instance.lowTempFluid);
+            registerFluid(modId, information, ElementInstance.LOW_TEMP, instance.lowTempFluid);
         }
         if (instance.has.contains(7)) {
-            registerGas(modId, information, 7, instance.highTempGas);
+            registerGas(modId, information, ElementInstance.HIGH_TEMP, instance.highTempGas);
         }
         if (instance.has.contains(8)) {
-            registerGas(modId, information, 8, instance.mediumTempGas);
+            registerGas(modId, information, ElementInstance.MEDIUM_TEMP, instance.mediumTempGas);
         }
         if (instance.has.contains(9)) {
-            registerGas(modId, information, 9, instance.lowTempGas);
+            registerGas(modId, information, ElementInstance.LOW_TEMP, instance.lowTempGas);
         }
     }
 }

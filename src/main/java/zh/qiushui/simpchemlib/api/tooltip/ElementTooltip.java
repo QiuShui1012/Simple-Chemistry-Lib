@@ -7,23 +7,23 @@ import java.util.List;
 
 public class ElementTooltip extends Tooltip{
     public static void addElementTooltip(List<Text> tooltip, Element information, Object... args) {
-        tooltip.add(simpChemTooltip("full_name", information.nameMap.get("en_us")));
-        tooltip.add(simpChemTooltip("symbol", information.symbol));
-        tooltip.add(simpChemTooltip("z_number", String.valueOf(information.zNumber)));
+        tooltip.add(simpChemTooltip("full_name", information.nameMap().get("en_us")));
+        tooltip.add(simpChemTooltip("symbol", information.symbol()));
+        tooltip.add(simpChemTooltip("z_number", String.valueOf(information.zNumber())));
 
-        if (!information.didMassTested) {
-            tooltip.add(Text.translatable("qualifier.simpchemlib.inaccuracy", tooltip("mass", String.valueOf(information.mass))));
+        if (!information.didMassTested()) {
+            tooltip.add(Text.translatable("qualifier.simpchemlib.inaccuracy", tooltip("mass", String.valueOf(information.mass()))));
         } else {
-            tooltip.add(tooltip("mass", String.valueOf(information.mass)));
+            tooltip.add(tooltip("mass", String.valueOf(information.mass())));
         }
 
-        if (!information.didMetalTypeTested) {
-            tooltip.add(Text.translatable("qualifier.simpchemlib.inaccuracy", tooltip("metal_type", String.valueOf(information.metalType))));
+        if (!information.didMetalTypeTested()) {
+            tooltip.add(Text.translatable("qualifier.simpchemlib.inaccuracy", tooltip("metal_type", String.valueOf(information.metalType()))));
         } else {
-            tooltip.add(tooltip("metal_type", String.valueOf(information.metalType)));
+            tooltip.add(tooltip("metal_type", String.valueOf(information.metalType())));
         }
 
-        tooltip.add(simpChemTooltip("fluid_temp", information.fluidTemp));
-        tooltip.add(simpChemTooltip("gas_temp", information.gasTemp));
+        tooltip.add(simpChemTooltip("fluid_temp", information.fluidTemp()));
+        tooltip.add(simpChemTooltip("gas_temp", information.gasTemp()));
     }
 }
