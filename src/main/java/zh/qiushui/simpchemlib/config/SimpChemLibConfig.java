@@ -3,18 +3,28 @@ package zh.qiushui.simpchemlib.config;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
+import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 import net.minecraft.text.Text;
 import zh.qiushui.simpchemlib.SimpChemLib;
 
 @Config(name = SimpChemLib.MOD_ID)
-public class SimpChemLibConfig implements ConfigData {
-    @ConfigEntry.Gui.CollapsibleObject(startExpanded = true)
+public class SimpChemLibConfig extends PartitioningSerializer.GlobalData {
+    @ConfigEntry.Category("ds")
+    @ConfigEntry.Gui.TransitiveObject
     public DisplaySettings displaySettings = new DisplaySettings();
 
-    public static class DisplaySettings {
+    public SimpChemLibConfig() {
+    }
+
+    @Config(name = "ds")
+    public static class DisplaySettings implements ConfigData {
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
-        public TemperatureUnit temperatureUnit = TemperatureUnit.C;
+        public TemperatureUnit temperatureUnit;
+
+        public DisplaySettings() {
+            this.temperatureUnit = TemperatureUnit.C;
+        }
 
         public enum TemperatureUnit {
             C(Text.translatable("temperatureUnit.simpchemlib.c")),

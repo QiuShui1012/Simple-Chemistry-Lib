@@ -22,6 +22,6 @@ public class SimpChemLibClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         MachineScreenRegistry.registerAll();
-        BuiltinResourcePacksRegistry.registerAll();
+        // BuiltinResourcePacksRegistry.registerAll();
     }
 }

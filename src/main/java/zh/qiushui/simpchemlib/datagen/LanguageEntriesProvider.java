@@ -49,8 +49,8 @@ public class LanguageEntriesProvider {
             translationBuilder.add("metalType" + MOD_ID + "nonmetal", "非金属");
             translationBuilder.add("metalType" + MOD_ID + "noble_gases", "惰性气体");
 
-            translationBuilder.add("temperature" + MOD_ID + "blue_ice_bucket", "0℃以下");
-            translationBuilder.add("temperature" + MOD_ID + "magma_bucket", "1538℃以上");
+            translationBuilder.add("temperature" + MOD_ID + "blue_ice_bucket", "%s以下");
+            translationBuilder.add("temperature" + MOD_ID + "magma_bucket", "%s以上");
 
             translationBuilder.add("temperatureUnit" + MOD_ID + "c", "℃（摄氏度）");
             translationBuilder.add("temperatureUnit" + MOD_ID + "f", "℉（华氏度）");
@@ -109,11 +109,11 @@ public class LanguageEntriesProvider {
             translationBuilder.add("metalType" + MOD_ID + "nonmetal", "Nonmetal");
             translationBuilder.add("metalType" + MOD_ID + "noble_gases", "Noble gases");
 
-            translationBuilder.add("temperature" + MOD_ID + "blue_ice_bucket", "Below 0℃");
-            translationBuilder.add("temperature" + MOD_ID + "magma_bucket", "Above 1538℃");
+            translationBuilder.add("temperature" + MOD_ID + "blue_ice_bucket", "Below %s");
+            translationBuilder.add("temperature" + MOD_ID + "magma_bucket", "Above %s");
 
-            translationBuilder.add("temperatureUnit" + MOD_ID + "f", "°F (Fahrenheit)");
-            translationBuilder.add("temperatureUnit" + MOD_ID + "c", "°C (Celsius)");
+            translationBuilder.add("temperatureUnit" + MOD_ID + "f", "℉ (Fahrenheit)");
+            translationBuilder.add("temperatureUnit" + MOD_ID + "c", "℃ (Celsius)");
             translationBuilder.add("temperatureUnit" + MOD_ID + "k", "K (Kelvin)");
 
             translationBuilder.add("block" + MOD_ID + "element_extractor", "Element Extractor");
@@ -122,8 +122,6 @@ public class LanguageEntriesProvider {
             translationBuilder.add("item" + MOD_ID + "magma_bucket", "Magma Bucket");
 
             translationBuilder.add("container.element_extractor", "Element Extractor");
-
-            translationBuilder.add("resourcePack" + MOD_ID + "elaborate_model", "Elaborate Model");
         }
     }
 }

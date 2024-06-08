@@ -1,6 +1,7 @@
 package zh.qiushui.simpchemlib;
 
 import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 
@@ -17,7 +18,7 @@ public class SimpChemLib implements ModInitializer {
 	public static final int ROOM_TEMPERATURE = 25;
     public static final Logger LOGGER = LoggerFactory.getLogger("QiuShui's Chemistry Lib");
 	public static SimpChemLibConfig config = AutoConfig
-			.register(SimpChemLibConfig.class, JanksonConfigSerializer::new)
+			.register(SimpChemLibConfig.class, GsonConfigSerializer::new)
 			.getConfig();
 
 	@Override
