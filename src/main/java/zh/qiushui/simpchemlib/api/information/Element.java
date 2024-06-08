@@ -2,7 +2,7 @@ package zh.qiushui.simpchemlib.api.information;
 
 import org.jetbrains.annotations.NotNull;
 import zh.qiushui.simpchemlib.api.definition.MatterStates;
-import zh.qiushui.simpchemlib.api.definition.MetalTypes;
+import zh.qiushui.simpchemlib.api.definition.MetalType;
 import zh.qiushui.simpchemlib.api.definition.map.TypeColorMap;
 import zh.qiushui.simpchemlib.api.information.language.I18nNameMap;
 
@@ -29,7 +29,7 @@ public record Element(I18nNameMap nameMap,
         private String symbol;
         private int zNumber;
         private double mass;
-        private int metalType = MetalTypes.NONE;
+        private int metalType = MetalType.NONE;
         private int matterState = MatterStates.SOLID;
         private double solidTemp;
         private double fluidTemp;

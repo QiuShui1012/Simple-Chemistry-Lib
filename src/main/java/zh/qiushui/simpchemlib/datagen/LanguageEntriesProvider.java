@@ -7,7 +7,7 @@ import zh.qiushui.simpchemlib.SimpChemLib;
 
 public class LanguageEntriesProvider {
     public static final String MOD_ID = "." + SimpChemLib.MOD_ID + ".";
-    // public static final String MODMENU = SimpChemLib.MOD_ID + ".modmenu.";
+    public static final String CONFIG = "text.autoconfig" + MOD_ID;
 
     public static class ChineseEntriesProvider extends FabricLanguageProvider {
         protected ChineseEntriesProvider(FabricDataOutput dataOutput) {
@@ -16,13 +16,13 @@ public class LanguageEntriesProvider {
 
         @Override
         public void generateTranslations(TranslationBuilder translationBuilder) {
-            // translationBuilder.add(MODMENU + "title", "简单化学类库 - 配置");
+            translationBuilder.add(CONFIG + "title", "简单化学类库 - 配置");
 
-            // translationBuilder.add(MODMENU + "title.elaborate_model", "精细模型");
+            translationBuilder.add(CONFIG + "option.displaySettings", "显示设置");
 
-            // translationBuilder.add(MODMENU + "option.elaborate_base", "启用%s精细模型");
+            translationBuilder.add(CONFIG + "option.displaySettings.temperatureUnit", "设置温度单位显示");
 
-            // translationBuilder.add(MODMENU + "tooltip.elaborate_base", "目前%s已有两种模型：精细和简单\n默认为精细模型，若设置为关闭，则启用简单模型");
+            translationBuilder.add(CONFIG + "option.displaySettings.temperatureUnit.@Tooltip", "支持切换为摄氏度、华氏度或开尔文。");
 
             translationBuilder.add("itemGroup" + MOD_ID + "bucket", "简单化学类库|桶");
             translationBuilder.add("itemGroup" + MOD_ID + "machine", "简单化学类库|机器");
@@ -52,6 +52,10 @@ public class LanguageEntriesProvider {
             translationBuilder.add("temperature" + MOD_ID + "blue_ice_bucket", "0℃以下");
             translationBuilder.add("temperature" + MOD_ID + "magma_bucket", "1538℃以上");
 
+            translationBuilder.add("temperatureUnit" + MOD_ID + "c", "℃（摄氏度）");
+            translationBuilder.add("temperatureUnit" + MOD_ID + "f", "℉（华氏度）");
+            translationBuilder.add("temperatureUnit" + MOD_ID + "k", "K（开尔文）");
+
             translationBuilder.add("block" + MOD_ID + "element_extractor", "元素提取机");
 
             translationBuilder.add("item" + MOD_ID + "blue_ice_bucket", "蓝冰桶");
@@ -70,13 +74,13 @@ public class LanguageEntriesProvider {
 
         @Override
         public void generateTranslations(TranslationBuilder translationBuilder) {
-            // translationBuilder.add(MODMENU + "title", "Simple Chemistry Lib - Configuration");
+            translationBuilder.add(CONFIG + "title", "Simple Chemistry Lib - Configuration");
 
-            // translationBuilder.add(MODMENU + "title.elaborate_model", "Elaborate model");
+            translationBuilder.add(CONFIG + "option.displaySettings", "Display Settings");
 
-            // translationBuilder.add(MODMENU + "option.elaborate_base", "Enable %s elaborate model");
+            translationBuilder.add(CONFIG + "option.displaySettings.temperatureUnit", "Set temperature unit display");
 
-            // translationBuilder.add(MODMENU + "tooltip.elaborate_base", "Currently, there are two models for %s: Elaborate and Simple\nDefault to elaborate model, if set to off, enable simple model");
+            translationBuilder.add(CONFIG + "option.displaySettings.temperatureUnit.@Tooltip", "Supports switching to Fahrenheit, Celsius, or Kelvin.");
 
             translationBuilder.add("itemGroup" + MOD_ID + "bucket", "Simple Chemistry Lib: Buckets");
             translationBuilder.add("itemGroup" + MOD_ID + "machine", "Simple Chemistry Lib: Machines");
@@ -107,6 +111,10 @@ public class LanguageEntriesProvider {
 
             translationBuilder.add("temperature" + MOD_ID + "blue_ice_bucket", "Below 0℃");
             translationBuilder.add("temperature" + MOD_ID + "magma_bucket", "Above 1538℃");
+
+            translationBuilder.add("temperatureUnit" + MOD_ID + "f", "°F (Fahrenheit)");
+            translationBuilder.add("temperatureUnit" + MOD_ID + "c", "°C (Celsius)");
+            translationBuilder.add("temperatureUnit" + MOD_ID + "k", "K (Kelvin)");
 
             translationBuilder.add("block" + MOD_ID + "element_extractor", "Element Extractor");
 
